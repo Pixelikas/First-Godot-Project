@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/ObjectTest_01.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Cannon.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 30.0
+
+[node name="ObjectTest_01" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="cannon" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite" parent="cannon"]
+texture = ExtResource( 2 )
+offset = Vector2( 28.5302, 1.58456 )
+
+[node name="muzzle" type="Position2D" parent="cannon"]
+position = Vector2( 89.2448, 0 )
+
+[node name="CadenciaDeTiro" type="Timer" parent="."]
+one_shot = true
+[connection signal="mouse_entered" from="." to="." method="_on_ObjectTest_01_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_ObjectTest_01_mouse_exited"]
+[connection signal="timeout" from="CadenciaDeTiro" to="." method="_on_CadenciaDeTiro_timeout"]
